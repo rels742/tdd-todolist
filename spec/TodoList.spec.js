@@ -48,11 +48,33 @@ describe("TodoList", () => {
   
   it("sets a todo completed by its ID", () => {
     // set up
-    
+    const todoList = new TodoList()
+    todoList.create("turn the heating on!")
+    const expected = {
+      id: 1,
+      text: "turn the heating on!",
+      isComplete: true
+    }
     // execute
-    const result = todoList.completedById()
-    
+    const result = todoList.completeById(expected.id)
+  
     // verify
+    expect(result).toEqual(expected)
+
+  })
+
+  it("detects non existent to do item", () => {
+    // set up
+    const todoList = new TodoList()
+    // todoList.create("turn the heating on!")
+    const expected = false
+    // execute
+    const result = todoList.completeById(4)
+    // console.log('trying to complete non existent to do', result)
+  
+    // verify
+    expect(result).toEqual(expected)
+
   })
   
 })
